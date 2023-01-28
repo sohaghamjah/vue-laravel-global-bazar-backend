@@ -2,11 +2,12 @@
 
 namespace Database\Seeders;
 
-use App\Models\Seller;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use App\Models\Seller;
+use Illuminate\Support\Facades\Hash;
 
-class SeelerSeeder extends Seeder
+class SellerSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -19,7 +20,7 @@ class SeelerSeeder extends Seeder
             'email' => 'seller@gmail.com',
             'phone' => '01991455439',
             'name' => 'Mr. Seller',
-            'password' => '12345678'
+            'password' => Hash::make(12345678),
         ]);
     }
 }
