@@ -20,6 +20,6 @@ class Slider extends Model
 
     public function scopeActive($query)
     {
-        $query->where('status', 'active');
+        $query->where('status', true);
     }
 }
