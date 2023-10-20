@@ -25,7 +25,7 @@ return new class extends Migration
             $table->string('address')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->string('is_verified', [1,2])->default(1);
+            $table->enum('is_verified', [1,2])->default(1);
             $table->rememberToken();
             $table->timestamps();
         });

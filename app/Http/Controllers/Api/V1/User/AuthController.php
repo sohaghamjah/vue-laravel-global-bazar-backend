@@ -26,20 +26,14 @@ class AuthController extends ApiController
     }
 
     public function register(RegisterRequest $request){
-        $user = User::create([
-            'name'     => $request->name,
-            'email'    => $request->email,
-            'phone'    => $request->phone,
-            'password' => Hash::make($request->password),
-        ]);
-
+        $user = User::create($request->validated());
         return $this->makeToken($user);
     }
 
     public function logout(Request $request){
         $request->user()->tokens()->delete();
 
-        return $this->sendSuccessResponse(false, 'User Logout', 200);
+        return $this->sendSuccessResponse(true, 'User Logout', 200);
     }
 
     public function user(Request $request){
