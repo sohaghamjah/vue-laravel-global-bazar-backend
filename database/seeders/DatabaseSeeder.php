@@ -22,6 +22,8 @@ class DatabaseSeeder extends Seeder
         //     SellerSeeder::class,
         // ]);
 
-        \App\Models\Admin\Slider::factory(4)->create();
+        // \App\Models\Admin\Slider::factory(4)->create();
+        \App\Models\Admin\Category::factory(30)->create();
+        \App\Models\Admin\SubCategory::factory(100)->create();
     }
 }

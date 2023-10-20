@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Api\V1\Admin;
 
-use App\Models\Admin\Slider;
 use Illuminate\Http\Request;
+use App\Models\Admin\Category;
 use App\Http\Controllers\Controller;
-use App\Http\Resources\Admin\SliderResource;
+use App\Http\Resources\Admin\CategoryResource;
 
-class SliderController extends Controller
+class CategoryController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,8 +16,8 @@ class SliderController extends Controller
      */
     public function index()
     {
-        $sliders = Slider::active()->orderBy('id', 'desc')->take(4)->get();
-        return  SliderResource::collection($sliders);
+        $cats = Category::with(['subcategories'])->status(true)->orderBy('name', 'ASC')->get();
+        return  CategoryResource::collection($cats);
     }
 
     /**
