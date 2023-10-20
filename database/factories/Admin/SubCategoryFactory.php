@@ -19,9 +19,9 @@ class SubCategoryFactory extends Factory
     {
         return [
             'category_id' => $this->faker->randomElement(Category::pluck('id')->toArray()),
-            'name' => $this->faker->name(),
-            'slug' => $this->faker->unique()->slug(),
-            'status' => true,
+            'name'        => $this->faker->name(),
+            'slug'        => $this->faker->unique()->slug(),
+            'status'      => true,
         ];
     }
 }
