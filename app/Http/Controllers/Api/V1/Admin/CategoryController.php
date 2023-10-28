@@ -16,7 +16,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $cats = Category::with(['subcategories'])->status(true)->orderBy('name', 'ASC')->get();
+        $cats = Category::with(['subcategories'])->status(1)->orderBy('name', 'ASC')->paginate(10);
         return  CategoryResource::collection($cats);
     }
 

@@ -22,7 +22,6 @@ class CategoryFactory extends Factory
             'slug' => $this->faker->unique()->slug(),
             'image' => $this->faker->imageUrl('350', '350'),
             // 'image' => $image,
-            'status' => true,
         ];
     }
 }

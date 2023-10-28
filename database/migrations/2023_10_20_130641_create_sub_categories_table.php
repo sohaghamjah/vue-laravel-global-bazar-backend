@@ -18,7 +18,7 @@ return new class extends Migration
             $table->unsignedBigInteger('category_id');
             $table->string('name');
             $table->string('slug')->unique();
-            $table->enum('status',['active','inactive'])->default('inactive');
+            $table->enum('status',[true,false])->default(true);
             $table->timestamps();
         });
     }

@@ -21,7 +21,6 @@ class SubCategoryFactory extends Factory
             'category_id' => $this->faker->randomElement(Category::pluck('id')->toArray()),
             'name'        => $this->faker->name(),
             'slug'        => $this->faker->unique()->slug(),
-            'status'      => true,
         ];
     }
 }
