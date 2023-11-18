@@ -16,16 +16,16 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // $this->call([
-        //     AdminSeeder::class,
-        //     UserSeeder::class,
-        //     SellerSeeder::class,
-        // ]);
+        $this->call([
+            AdminSeeder::class,
+            UserSeeder::class,
+            SellerSeeder::class,
+        ]);
 
-        // \App\Models\Admin\Slider::factory(4)->create();
-        // \App\Models\Admin\Category::factory(30)->create();
-        // \App\Models\Admin\SubCategory::factory(100)->create();
-        // \App\Models\Admin\Brand::factory(20)->create();
+        \App\Models\Admin\Slider::factory(4)->create();
+        \App\Models\Admin\Category::factory(30)->create();
+        \App\Models\Admin\SubCategory::factory(100)->create();
+        \App\Models\Admin\Brand::factory(20)->create();
         \App\Models\Admin\Product::factory(100)->create();
 
     }

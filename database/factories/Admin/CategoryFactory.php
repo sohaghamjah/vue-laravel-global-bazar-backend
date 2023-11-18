@@ -16,12 +16,12 @@ class CategoryFactory extends Factory
      */
     public function definition()
     {
-        // $image = "upload/category/" . $this->faker->numberBetween(1, 10) . ".png";
+        $image = "upload/category/" . $this->faker->numberBetween(1, 10) . ".png";
         return [
             'name' => $this->faker->name(),
             'slug' => $this->faker->unique()->slug(),
             'image' => $this->faker->imageUrl('350', '350'),
-            // 'image' => $image,
+            'image' => $image,
         ];
     }
 }

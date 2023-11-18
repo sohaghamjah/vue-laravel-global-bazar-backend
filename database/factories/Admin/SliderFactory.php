@@ -18,8 +18,8 @@ class SliderFactory extends Factory
     {
         $image = "upload/sliders/" . $this->faker->numberBetween(1, 4) . ".jfif";
         return [
-            'image' => $this->faker->imageUrl('1440', '450'),
-            // 'image' => $image,
+            // 'image' => $this->faker->imageUrl('1440', '450'),
+            'image' => $image,
             'status' => true,
         ];
     }

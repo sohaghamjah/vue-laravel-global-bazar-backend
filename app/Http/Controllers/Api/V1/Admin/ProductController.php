@@ -33,7 +33,7 @@ class ProductController extends Controller
             }
             return  ProductResource::collection($products);
         } catch (\Exception $e) {
-            return response()->json($e->getMessage());
+            return sendMessage($e->getMessage(), false, 500);
         }
     }
 
