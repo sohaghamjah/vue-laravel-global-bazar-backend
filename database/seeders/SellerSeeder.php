@@ -20,7 +20,7 @@ class SellerSeeder extends Seeder
             'email' => 'seller@gmail.com',
             'phone' => '01991455439',
             'name' => 'Mr. Seller',
-            'password' => Hash::make(12345678),
+            'password' => 12345678,
         ]);
     }
 }

@@ -16,9 +16,9 @@ class AuthController extends ApiController
     public function login(LoginRequest $request){
         $user = User::where('phone', $request->phone)->first();
  
-        if (! $user || ! Hash::check($request->password, $user->password)) {
+        if (!$user || !Hash::check($request->password, $user->password)) {
             throw ValidationException::withMessages([
-                'phone' => ['Phone or password dosen\' match.'],
+                'phone' => ['Phone or password dosen\'t match.'],
             ]);
         }
 
