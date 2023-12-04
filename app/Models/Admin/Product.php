@@ -2,6 +2,7 @@
 
 namespace App\Models\Admin;
 
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -45,5 +46,10 @@ class Product extends Model
     public function scopePublished($query)
     {
         $query->where('status', 'active');
+    }
+
+
+    public function wishlistUser(){
+        return $this->belongsToMany(User::class, 'wishlists', 'user_id', 'product_id')->withTimestamps();
     }
 }
