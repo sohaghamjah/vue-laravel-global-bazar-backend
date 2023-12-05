@@ -3,11 +3,19 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\User\WishlistResource;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class WishlistController extends Controller
 {
+
+    public function index(){
+        $wishlist = Auth::user()->wishlistProducts()->get();
+
+        return WishlistResource::collection($wishlist);
+    }
+
     public function store(Request $request){
         $user = Auth::user();
 

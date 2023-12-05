@@ -44,10 +44,13 @@ class AuthController extends ApiController
     public function makeToken($user){
         $token = $user->createToken('user-token')->plainTextToken;
 
+        $wishlists = $user->wishlistProducts()->get();
+
         return AuthResource::make($user)->additional([
             'meta' => [
                 'token'      => $token,
                 'token_type' => 'Bearer',
+                'wishlists' =>  $wishlists,
             ]
         ]);
     }

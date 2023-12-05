@@ -16,6 +16,7 @@ Route::middleware('auth:user-api')->group(function () {
     });
 
     Route::controller(WishlistController::class)->prefix('wishlist')->group(function(){
+        Route::get('/', 'index');
         Route::post('/store', 'store');
     });  
 });
