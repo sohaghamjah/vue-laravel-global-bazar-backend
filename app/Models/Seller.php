@@ -2,10 +2,11 @@
 
 namespace App\Models;
 
+use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
-use Laravel\Sanctum\HasApiTokens;
 
 class Seller extends Authenticatable
 {
@@ -46,4 +47,21 @@ class Seller extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function setPasswordAttribute($passwrod){
+        $this->attributes['password'] = Hash::make($passwrod);
+    }
+
+    public function scopeVerifiedSeller($query)
+    {
+        $query->where('is_verified', 1);
+    }
+
+
+    public function products()
+    {
+        return $this->hasMany(Product::class);
+    }
+
+
 }
