@@ -5,6 +5,7 @@ namespace Database\Factories\Admin;
 use App\Models\Admin\Brand;
 use App\Models\Admin\Category;
 use App\Models\Admin\SubCategory;
+use App\Models\Seller;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -26,7 +27,7 @@ class ProductFactory extends Factory
 
         $thumbnail = "upload/products/" . $this->faker->numberBetween(1, 21) . ".jpg";
         return [
-            'seller_id' => null,
+            'seller_id' => $this->faker->randomElement(Seller::pluck('id')->toArray()),
             'brand_id' => $this->faker->randomElement(Brand::pluck('id')->toArray()),
             'category_id' => $this->faker->randomElement(Category::pluck('id')->toArray()),
             'sub_category_id' => $this->faker->randomElement(SubCategory::pluck('id')->toArray()),

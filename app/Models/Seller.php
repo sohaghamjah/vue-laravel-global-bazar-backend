@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Admin\Product;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Notifications\Notifiable;
@@ -38,6 +39,7 @@ class Seller extends Authenticatable
         'password',
         'remember_token',
     ];
+    
 
     /**
      * The attributes that should be cast.

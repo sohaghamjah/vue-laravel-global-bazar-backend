@@ -11,7 +11,16 @@ class SellerController extends Controller
 {
     public function index(Request $request)
     {
-        $sellers = Seller::VerifiedSeller()->latest()->paginate(12);
+        $sellers = Seller::VerifiedSeller()->withCount('products')->latest()->paginate($request->show);
         return SellerResource::collection($sellers);
+    }
+
+    public function sellerProducts($slug){
+        try {
+            $seller = Seller::with('products')->where('slug',$slug)->first();
+            return new SellerResource($seller);
+        } catch (\Throwable $e) {
+            return sendMessage($e->getMessage(), false, 500);
+        }
     }
 }
