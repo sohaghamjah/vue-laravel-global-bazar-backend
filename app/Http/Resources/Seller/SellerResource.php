@@ -24,7 +24,6 @@ class SellerResource extends JsonResource
             'shop_name'      => $this->shop_name,
             'slug'           => $this->slug,
             'products_count' => $this->whenCounted('products'),
-            // 'products'       => $this->when($request->slug, SellerProductsResource::collection($this->products)),
             'created_at'     => $this->created_at,
             'updated_at'     => $this->updated_at,
         ];

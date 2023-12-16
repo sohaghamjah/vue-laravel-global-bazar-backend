@@ -14,5 +14,7 @@ Route::prefix('v1')->group(function () {
     Route::get('products', [ProductController::class, 'index']);
     Route::get('sellers', [SellerController::class, 'index']);
     Route::get('seller/products/{slug}', [SellerController::class, 'sellerProducts']);
+
     Route::get('shop-products', [ShopController::class, 'index']);
+    Route::get('shop-sidebar', [ShopController::class, 'sidebarData']);
 });

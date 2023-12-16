@@ -22,6 +22,10 @@ class Category extends Model
         $query->where('status', $status);
     }
 
+    public function products(){
+        return $this->hasMany(Product::class);
+    }
+
     public function subcategories()
     {
         return $this->hasMany(SubCategory::class)->where('status', true);
