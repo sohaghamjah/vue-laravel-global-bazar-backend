@@ -15,12 +15,22 @@ class ShopController extends Controller
     public function index(Request $request){
         try {
             $sort = $request->sort;
+            $per_page_data = $request->show;
+            $brands_id = $request->brands;
+            $categories_id = $request->categories;
 
-            if($sort == 'default'){
-                $products = Product::paginate($request->show);
-            }else{
-                $products = Product::conditions($sort)->paginate($request->show);
-            }
+            $products = Product::latest()->when($sort != 'default', function($q) use ($sort) {
+                $q->conditions($sort);
+            })
+            ->when($brands_id, function($q) use ($brands_id){
+                $q->whereIn('brand_id', $brands_id);
+            })
+            ->when($categories_id, function($q) use ($categories_id){
+                $q->whereIn('category_id', $categories_id);
+            })
+            ->paginate($per_page_data);
+
+
             return ProductResource::collection($products);
 
         } catch (\Throwable $e) {
@@ -29,11 +39,11 @@ class ShopController extends Controller
     }
 
     public function sidebarData(){
-        $min_price = Product::published()->min('price');
-        $max_price = Product::published()->max('price');
+        $min_price = Product::min('price');
+        $max_price = Product::max('price');
 
-        $categories = Category::withCount('products')->status(1)->get();
-        $brands = Brand::withCount('products')->status(1)->get();
+        $categories = Category::withCount('products')->orderBy('name', 'desc')->status(1)->get();
+        $brands = Brand::withCount('products')->orderBy('name', 'desc')->status(1)->get();
 
         return ShopSidebarResource::collection([
             'categories' => $categories,
