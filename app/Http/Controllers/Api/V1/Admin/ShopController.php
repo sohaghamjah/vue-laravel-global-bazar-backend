@@ -18,8 +18,10 @@ class ShopController extends Controller
             $per_page_data = $request->show;
             $brands_id = $request->brands;
             $categories_id = $request->categories;
+            $price_range = $request->price_range;
 
-            $products = Product::latest()->when($sort != 'default', function($q) use ($sort) {
+            $products = Product::latest()->published()
+            ->when($sort != 'default', function($q) use ($sort) {
                 $q->conditions($sort);
             })
             ->when($brands_id, function($q) use ($brands_id){
@@ -27,6 +29,11 @@ class ShopController extends Controller
             })
             ->when($categories_id, function($q) use ($categories_id){
                 $q->whereIn('category_id', $categories_id);
+            })
+            ->when($price_range, function($q) use ($price_range){
+                $min_price = $price_range[0];
+                $max_price = $price_range[1];
+                $q->whereBetween('price', [$min_price, $max_price]);
             })
             ->paginate($per_page_data);
 
