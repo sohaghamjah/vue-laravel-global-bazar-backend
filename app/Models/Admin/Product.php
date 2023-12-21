@@ -43,9 +43,9 @@ class Product extends Model
         $query->where('sale', 1);
     }
 
-    public function scopePublished($query)
+    public function scopeActive($query)
     {
-        $query->where('status', 'active');
+        $query->where('status', 1);
     }
 
 

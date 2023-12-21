@@ -14,13 +14,15 @@ class ShopController extends Controller
 {
     public function index(Request $request){
         try {
-            $sort = $request->sort;
+            $sort          = $request->sort;
             $per_page_data = $request->show;
-            $brands_id = $request->brands;
+            $brands_id     = $request->brands;
             $categories_id = $request->categories;
-            $price_range = $request->price_range;
+            $price_range   = $request->price_range;
+            $search_text   = $request->search_text;
 
-            $products = Product::latest()->published()
+            $products = Product::latest()
+            ->active()
             ->when($sort != 'default', function($q) use ($sort) {
                 $q->conditions($sort);
             })
@@ -34,6 +36,10 @@ class ShopController extends Controller
                 $min_price = $price_range[0];
                 $max_price = $price_range[1];
                 $q->whereBetween('price', [$min_price, $max_price]);
+            })
+            ->when($search_text != '', function($q) use ($search_text){
+                $q->where('name', 'LIKE', '%'.$search_text.'%');
+                $q->orWhere('descp', 'LIKE', '%'.$search_text.'%');
             })
             ->paginate($per_page_data);
 
