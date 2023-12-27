@@ -1,8 +1,8 @@
 <?php
 
-use App\Http\Controllers\Api\V1\User\AuthController;
-use App\Http\Controllers\User\WishlistController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Api\V1\User\AuthController;
+use App\Http\Controllers\Api\V1\User\WishlistController;
 
 Route::controller(AuthController::class)->group(function () {
     Route::post('/login', 'login');

@@ -5,6 +5,7 @@ namespace Database\Seeders;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 use App\Models\Seller;
+use Database\Seeders\Admin\DivisionSeeder;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -20,6 +21,7 @@ class DatabaseSeeder extends Seeder
             AdminSeeder::class,
             UserSeeder::class,
             SellerSeeder::class,
+            DivisionSeeder::class
         ]);
 
         \App\Models\Admin\Slider::factory(4)->create();

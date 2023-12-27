@@ -13,6 +13,7 @@ Route::prefix('v1')->group(function () {
     Route::get('categories', [CategoryController::class, 'index']);
     Route::get('nav-categories', [CategoryController::class, 'navCategories']);
     Route::get('products', [ProductController::class, 'index']);
+    Route::get('products/details/{slug}', [ProductController::class, 'productDetails']);
     Route::get('sellers', [SellerController::class, 'index']);
     Route::get('seller/products/{slug}', [SellerController::class, 'sellerProducts']);
 
