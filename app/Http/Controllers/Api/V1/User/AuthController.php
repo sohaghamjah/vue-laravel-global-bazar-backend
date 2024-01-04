@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api\V1\User;
 
 use App\Http\Controllers\Api\V1\ApiController;
+use App\Http\Requests\User\AddressRequest;
 use App\Http\Requests\User\LoginRequest;
 use App\Http\Resources\User\AuthResource;
 use App\Models\User;
@@ -10,6 +11,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\ValidationException;
 use App\Http\Requests\User\RegisterRequest;
+use App\Http\Resources\User\WishlistResource;
+use Illuminate\Support\Facades\Auth;
 
 class AuthController extends ApiController
 {
@@ -40,6 +43,31 @@ class AuthController extends ApiController
         return AuthResource::make($request->user());
     }
 
+    public function addressStore(AddressRequest $request){
+
+        $request->validated();
+
+        Auth::user()->update([
+            'division_id' => $request->division_id,
+            'district_id' => $request->district_id,
+            'address'     => $request->address,
+        ]);
+
+        return sendMessage('Address Store Successful', true, 201);
+    }
+
+    public function getAddress(){
+        $user = Auth::user();
+        $address = User::where('id', $user->id)->select('division_id','district_id','address')
+            ->with(['division' => function($query){
+                $query->select('id','name');
+            },'district' => function($query){
+                $query->select('id','name');
+            }]
+        )->first();
+
+        return WishlistResource::make($address);
+    }
 
     public function makeToken($user){
         $token = $user->createToken('user-token')->plainTextToken;

@@ -11,7 +11,7 @@ class DistrictController extends Controller
 {
     public function districtById($division_id)
     {
-        $districts = District::where('division_id'. $division_id)->get(['bn_name', 'name', 'id']);
+        $districts = District::where('division_id', $division_id)->get(['bn_name', 'name', 'id']);
         return DistrictResource::collection($districts);
     }
 }

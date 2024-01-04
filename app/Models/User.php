@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use App\Models\Admin\District;
+use App\Models\Admin\Division;
 use App\Models\Admin\Product;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -55,5 +57,13 @@ class User extends Authenticatable
 
     public function wishlistProducts(){
         return $this->belongsToMany(Product::class, 'wishlists', 'user_id', 'product_id')->withTimestamps();
+    }
+
+    public function division(){
+        return $this->belongsTo(Division::class);
+    }
+
+    public function district(){
+        return $this->belongsTo(District::class);
     }
 }
