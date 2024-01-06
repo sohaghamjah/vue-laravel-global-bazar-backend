@@ -5,6 +5,7 @@ use App\Http\Controllers\Api\V1\User\AuthController;
 use App\Http\Controllers\Api\V1\User\WishlistController;
 use App\Http\Controllers\Api\V1\Admin\DistrictController;
 use App\Http\Controllers\Api\V1\Admin\DivisionController;
+use App\Http\Controllers\Api\V1\Admin\OrderController;
 
 Route::controller(AuthController::class)->group(function () {
     Route::post('/login', 'login');
@@ -22,7 +23,9 @@ Route::middleware('auth:user-api')->group(function () {
     Route::controller(WishlistController::class)->prefix('wishlist')->group(function(){
         Route::get('/', 'index');
         Route::post('/store', 'store');
-    });  
+    });
+    
+    Route::post('place-order', [OrderController::class, 'placeOrder']);
 });
 
 Route::controller(DivisionController::class)->group(function () {

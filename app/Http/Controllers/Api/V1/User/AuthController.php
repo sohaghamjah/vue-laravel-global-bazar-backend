@@ -46,7 +46,6 @@ class AuthController extends ApiController
     public function addressStore(AddressRequest $request){
 
         $request->validated();
-
         Auth::user()->update([
             'division_id' => $request->division_id,
             'district_id' => $request->district_id,
@@ -60,7 +59,7 @@ class AuthController extends ApiController
         $user = Auth::user();
         $address = User::where('id', $user->id)->select('division_id','district_id','address')
             ->with(['division' => function($query){
-                $query->select('id','name');
+                $query->select('id','name','charge');
             },'district' => function($query){
                 $query->select('id','name');
             }]
