@@ -30,6 +30,7 @@ Route::middleware('auth:user-api')->group(function () {
     Route::post('place-order', [OrderController::class, 'placeOrder']);
     Route::post('apply-coupon', [CouponController::class, 'applyCoupon']);
     Route::get('my/orders', [ProfileController::class, 'getOrders']);
+    Route::get('my/order/details/{id}', [ProfileController::class, 'getOrderDetails']);
 });
 
 Route::controller(DivisionController::class)->group(function () {

@@ -15,4 +15,10 @@ class ProfileController extends Controller
 
         return OrderResource::collection($orders);
     }
+
+    public function getOrderDetails($id){
+        $order = Order::with('items.product')->find($id);
+
+        return OrderResource::make($order);
+    }
 }
