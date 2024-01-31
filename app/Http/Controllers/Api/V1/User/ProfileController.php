@@ -10,8 +10,8 @@ use Illuminate\Support\Facades\Auth;
 
 class ProfileController extends Controller
 {
-    public function getOrders(){
-        $orders = Order::where('user_id', Auth::id())->with('items')->get();
+    public function getOrders(Request $request){
+        $orders = Order::where('user_id', Auth::id())->with('items')->paginate(5);
 
         return OrderResource::collection($orders);
     }
