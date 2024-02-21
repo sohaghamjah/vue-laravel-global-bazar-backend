@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Api\V1\User;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\User\ProfileUpdateResource;
+use App\Http\Resources\User\AuthResource;
 use App\Http\Resources\User\OrderResource;
 use App\Models\Admin\Order;
 use Illuminate\Http\Request;
@@ -20,5 +22,11 @@ class ProfileController extends Controller
         $order = Order::with('items.product')->find($id);
 
         return OrderResource::make($order);
+    }
+
+    public function profileUpdate(ProfileUpdateResource $request){
+        $request->validated();
+        Auth::user()->update($request->validated());
+        return AuthResource::make(Auth::user());
     }
 }
