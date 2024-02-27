@@ -31,6 +31,7 @@ Route::middleware('auth:user-api')->group(function () {
     Route::post('apply-coupon', [CouponController::class, 'applyCoupon']);
     Route::get('my/orders', [ProfileController::class, 'getOrders']);
     Route::post('profile/update', [ProfileController::class, 'profileUpdate']);
+    Route::post('password/update', [ProfileController::class, 'passwordUpdate']);
     Route::get('my/order/details/{id}', [ProfileController::class, 'getOrderDetails']);
 });
 
