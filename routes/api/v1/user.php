@@ -32,6 +32,7 @@ Route::middleware('auth:user-api')->group(function () {
     Route::get('my/orders', [ProfileController::class, 'getOrders']);
     Route::post('profile/update', [ProfileController::class, 'profileUpdate']);
     Route::post('password/update', [ProfileController::class, 'passwordUpdate']);
+    Route::post('image/update', [ProfileController::class, 'imagedUpdate']);
     Route::get('my/order/details/{id}', [ProfileController::class, 'getOrderDetails']);
 });
 

@@ -6,6 +6,7 @@ namespace Database\Seeders;
 
 use App\Models\Seller;
 use Database\Seeders\Admin\CouponSeeder;
+use Database\Seeders\Admin\DistrictSeeder;
 use Database\Seeders\Admin\DivisionSeeder;
 use Illuminate\Database\Seeder;
 
@@ -23,6 +24,7 @@ class DatabaseSeeder extends Seeder
             UserSeeder::class,
             SellerSeeder::class,
             DivisionSeeder::class,
+            DistrictSeeder::class,
             CouponSeeder::class,
         ]);
 

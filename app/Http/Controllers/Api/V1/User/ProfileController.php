@@ -5,14 +5,16 @@ namespace App\Http\Controllers\Api\V1\User;
 use App\Models\Admin\Order;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\User\PasswordUpdateResource;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Intervention\Image\ImageManager;
+use Intervention\Image\Facades\Image;
 use App\Http\Resources\User\AuthResource;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rules\Password;
 use App\Http\Resources\User\OrderResource;
 use App\Http\Requests\User\ProfileUpdateResource;
+use App\Http\Requests\User\PasswordUpdateResource;
 
 class ProfileController extends Controller
 {
@@ -42,5 +44,27 @@ class ProfileController extends Controller
         Auth::user()->update(['password' => $request->password]);
 
         return sendMessage('Password Updated Successful', true, 200);
+    }
+
+
+    public function imagedUpdate(Request $request){
+        if ($request->hasFile('image')) {
+            $path = 'upload/user/';
+            $requestImage = $request->file('image');
+            $imgName =  $requestImage->hashName();
+            Image::make($requestImage)->resize(300, 200)->save($path . $imgName);
+            $pathName = $path . $imgName;
+
+            //old image delte
+            @unlink(public_path($request->user()->image));
+
+            $user = Auth::user();
+
+            $user->update([
+                'image' => $pathName
+            ]);
+
+            return AuthResource::make($user);
+        }
     }
 }
