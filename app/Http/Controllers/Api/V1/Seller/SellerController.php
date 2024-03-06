@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api\V1\Seller;
 use App\Models\Seller;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Seller\SellerApplyRequest;
 use App\Http\Resources\Seller\SellerResource;
 
 class SellerController extends Controller
@@ -31,5 +32,12 @@ class SellerController extends Controller
         } catch (\Throwable $e) {
             return sendMessage($e->getMessage(), false, 500);
         }
+    }
+
+
+    public function sellerApply(SellerApplyRequest $request){
+        Seller::create($request->validated());
+
+        return sendMessage('Seller Apply Successful', true, 200);
     }
 }
