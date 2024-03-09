@@ -1,11 +1,18 @@
 <script setup>
-    import Input from '@/common/components/Input.vue';
+    import VInput from '@/common/components/VInput.vue';
     import { reactive } from 'vue';
+    import { Form } from 'vee-validate';
+    import * as yup from "yup";
 
-    const form = reactive({
-      full_name: "",
-      password: "",
-    })
+  const schema = yup.object({
+      email: yup.string().required().email(),
+      password: yup.string().required().min(8),
+  });
+
+  const onSubmit = async (values, { setErrors, resetForm }) => {
+    console.log(values);
+  };
+  
 </script>
 <template>
     <!-- /.login-logo -->
@@ -16,9 +23,9 @@
     <div class="card-body">
       <p class="login-box-msg">Sign in to start your session</p>
 
-      <form action="../../index3.html" method="post">
+      <Form @submit="onSubmit" :validation-schema="schema" v-slot="{errors, isSubmitting}">
         <div class="input-group mb-3">
-          <Input placeholder="Full Name" type="email" v-model="form.full_name"></Input>
+          <VInput placeholder="Email" type="email" name="email"></VInput>
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-envelope"></span>
@@ -26,7 +33,7 @@
           </div>
         </div>
         <div class="input-group mb-3">
-          <Input placeholder="Password" type="password" v-model="form.password"></Input>
+          <VInput placeholder="Password" type="password" name="password"></VInput>
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-lock"></span>
@@ -48,7 +55,7 @@
           </div>
           <!-- /.col -->
         </div>
-      </form>
+      </Form>
 
     </div>
     <!-- /.card-body -->
