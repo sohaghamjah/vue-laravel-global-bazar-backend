@@ -8,7 +8,7 @@ Route::controller(AuthController::class)->group(function () {
     Route::post('/register', 'register');
 });
 
-Route::middleware('auth:user-api')->group(function () {
+Route::middleware('auth:admin-api')->group(function () {
     Route::controller(AuthController::class)->group(function(){
         Route::post('/logout', 'logout');
         Route::get('/me', 'user');

@@ -14,21 +14,21 @@ use Illuminate\Validation\ValidationException;
 class AuthController extends ApiController
 {
     public function login(LoginRequest $request){
-        $user = Admin::where('phone', $request->phone)->first();
+        $admin = Admin::where('email', $request->email)->first();
  
-        if (! $user || ! Hash::check($request->password, $user->password)) {
+        if (!$admin || ! Hash::check($request->password, $admin->password)) {
             throw ValidationException::withMessages([
-                'phone' => ['Phone or password dosen\' match.'],
+                'email' => ['Invalid Email Or Password'],
             ]);
         }
 
-        return $this->makeToken($user);
+        return $this->makeToken($admin);
     }
 
     public function logout(Request $request){
-        $request->user()->tokens()->delete();
+        // $request->user()->tokens()->delete();
 
-        return $this->sendSuccessResponse(false, 'Admin Logout', 200);
+        return $this->sendSuccessResponse(true, 'Admin Logout', 200);
     }
 
     public function user(Request $request){
@@ -36,14 +36,16 @@ class AuthController extends ApiController
     }
 
 
-    public function makeToken($user){
-        $token = $user->createToken('seller-token')->plainTextToken;
+    public function makeToken($admin){
+        $token = $admin->createToken('seller-token')->plainTextToken;
 
-        return AuthResource::make($user)->additional([
-            'meta' => [
-                'token'      => $token,
-                'token_type' => 'Bearer',
-            ]
+        return AuthResource::make([
+            'user' => [
+                'name' => $admin->name,
+                'email' => $admin->email,
+                'phone' => $admin->phone,
+            ],
+            'token' => $token,
         ]);
     }
 }

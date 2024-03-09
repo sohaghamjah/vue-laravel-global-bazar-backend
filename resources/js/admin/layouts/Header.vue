@@ -1,3 +1,23 @@
+<script setup>
+    import { useAuth, useNotification } from '@/admin/stores';
+    import { useRouter } from 'vue-router';
+
+    const auth = useAuth();
+    const router = useRouter();
+    const notify = useNotification();
+
+    const handleLogout = async () => {
+        try {
+            const res = await auth.logout();
+            if(res.data.status){
+                notify.flashNotify('success', 'Logout Successfully', "Success");
+                router.push({name: 'login'});
+            }
+        } catch (error) {
+            
+        }
+    }
+</script>
 <template>
    <!-- Navbar -->
    <nav class="main-header navbar navbar-expand navbar-white navbar-light">
@@ -133,7 +153,22 @@
                 <i class="fas fa-th-large"></i>
                 </a>
             </li>
-            </ul>
+             <!--  Profile -->
+            <li class="nav-item dropdown profile">
+                <a class="nav-link" data-toggle="dropdown" href="javascript:void(0)">
+                <img src="@/assets/img/profile/user.jpg" alt="User Avatar" class="profile-image">
+                </a>
+                <div class="dropdown-menu dropdown-menu-sm">
+                    <a href="" class="dropdown-item">
+                        <i class="fas fa-envelope mr-2"></i> Profile
+                    </a>
+                    <div class="dropdown-divider"></div>
+                    <a href="javascript:void(0)" @click="handleLogout" class="dropdown-item logout-btn">
+                        <i class="fas fa-sign-out-alt"></i> Logout
+                    </a>
+                </div>
+            </li>
+        </ul>
     </nav>
     <!-- /.navbar -->
 </template>

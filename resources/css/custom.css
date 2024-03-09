@@ -1,0 +1,181 @@
+/*************************
+* Common Start
+****************/
+.sidebar-dark-primary{
+    background-color: #15213a;
+}
+.login-card-body, .register-card-body {
+    padding: 40px 30px;
+}
+.button-icon{
+    margin-right: 4px;
+    font-size: 14px;
+}
+.action-btn {
+    height: 33px;
+    width: 33px;
+    background: #ebebeb;
+    font-size: 14px;
+    display: inline-block;
+    text-align: center;
+    line-height: 31px;
+    color: #007bff;
+    border-radius: 5px;
+    transition: .3s all ease;
+}
+.action-btn:hover{
+    background: #007bff;
+    color: #fff;
+}
+.action-danger{
+    color: red;
+}
+.action-danger:hover{
+    background: red;
+    color: #fff;
+}
+.alert-primary {
+    color: #004085;
+    background-color: #cce5ff;
+    border-color: #b8daff;
+}
+.required::after{
+    content: '*';
+    top: 0;
+    color: #ff2e2e;
+    position: absolute;
+}
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+/*************************
+* Common End
+****************/
+
+/*************************
+* Profile Start
+****************/
+.profile .profile-image {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 1px solid #dbdbdb;
+}
+.profile .dropdown-item{
+    padding: 7px 15px;
+}
+.profile .dropdown-divider{
+    margin: 0;
+}
+.profile .dropdown-menu{
+    padding: 0;
+}
+.profile  .nav-link {
+    padding: 0;
+}
+.dropdown-menu {
+    left: -99px;
+}
+/*************************
+* Profile End
+****************/
+
+/*************************
+* Alert Modal Start
+****************/
+#alert-modal .modal-content{
+    width: 420px;
+}
+#alert-modal .close{
+    color: #fff;
+}
+/*************************
+* Alert Modal End
+****************/
+
+/*************************
+* Sidebar Start
+****************/
+
+.nav-pills .nav-link.active, .nav-pills .show>.nav-link {
+    background-color: transparent;
+}
+
+.sidebar-dark-primary .nav-sidebar>.nav-item>.nav-link.active, .sidebar-light-primary .nav-sidebar>.nav-item>.nav-link.active {
+    background-color: transparent;
+}
+
+[class*=sidebar-dark-] .nav-sidebar>.nav-item>.nav-link.active {
+    box-shadow: none;
+}
+
+[class*=sidebar-dark-] .nav-sidebar>.nav-item.menu-open>.nav-link, [class*=sidebar-dark-] .nav-sidebar>.nav-item:hover>.nav-link, [class*=sidebar-dark-] .nav-sidebar>.nav-item>.nav-link:focus {
+    background-color: transparent;
+}
+
+[class*=sidebar-dark-] .nav-treeview>.nav-item>.nav-link.active, [class*=sidebar-dark-] .nav-treeview>.nav-item>.nav-link.active:focus, [class*=sidebar-dark-] .nav-treeview>.nav-item>.nav-link.active:hover {
+    background-color: transparent;
+    color: #fff;
+}
+[class*=sidebar-dark-] .nav-treeview>.nav-item>.nav-link:focus, [class*=sidebar-dark-] .nav-treeview>.nav-item>.nav-link:hover {
+    background-color: transparent;
+}
+.nav-treeview .nav-icon {
+    vertical-align: text-bottom;
+}
+.nav-link {
+    padding: 6px 15px;
+}
+.nav.nav-treeview .nav-link{
+    padding: 3px 15px;
+}
+/*************************
+* Sidebar End
+****************/
+
+/*************************
+* Clinet Name Start
+****************/
+.client_name .client_img {
+    margin-right: 15px;
+}
+.client_name .client_img img {
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    border: 2px solid #ebebeb;
+}
+.client_name .client_img .image_text {
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: block;
+    background: #ababab;
+    text-transform: uppercase;
+    text-align: center;
+    line-height: 40px;
+    font-size: 24px;
+    color: #fff;
+    font-weight: 600;
+}
+.client_name .client_info .name{
+    color: #7367f0;
+    font-size: 16px;
+    margin: 0;
+}
+.client_name .client_info .email{
+    color: #000;
+    font-size: 14px;
+    margin: 0;
+}
+/*************************
+* Clinet Name End
+****************/
