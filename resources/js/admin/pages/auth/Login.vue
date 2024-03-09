@@ -26,19 +26,9 @@
       <Form @submit="onSubmit" :validation-schema="schema" v-slot="{errors, isSubmitting}">
         <div class="input-group mb-3">
           <VInput placeholder="Email" type="email" name="email"></VInput>
-          <div class="input-group-append">
-            <div class="input-group-text">
-              <span class="fas fa-envelope"></span>
-            </div>
-          </div>
         </div>
         <div class="input-group mb-3">
           <VInput placeholder="Password" type="password" name="password"></VInput>
-          <div class="input-group-append">
-            <div class="input-group-text">
-              <span class="fas fa-lock"></span>
-            </div>
-          </div>
         </div>
         <div class="row">
           <div class="col-8">
@@ -62,3 +52,9 @@
   </div>
   <!-- /.card -->
 </template>
+
+<style>
+  .input-group>.custom-file, .input-group>.custom-select, .input-group>.form-control, .input-group>.form-control-plaintext {
+      width: 100%;
+  }
+</style>

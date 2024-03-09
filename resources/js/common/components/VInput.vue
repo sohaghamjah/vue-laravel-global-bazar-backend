@@ -4,7 +4,7 @@
       defineEmits(['update:modelValue']);
 </script>
 <template>
-      <Field :name="name" v-slot="{field ,meta}">
+      <Field :name="name" v-slot="{errors, field ,meta}">
             <input class="form-control" 
             :value="modelValue"
             :class="{
@@ -14,5 +14,6 @@
             @input="$emit('update:modelValue', $event.target.value)"
             v-bind="{ ...$attrs, ...field }"
             >    
+            <span class="text-danger">{{ errors[0] }}</span>
       </Field>
 </template>
