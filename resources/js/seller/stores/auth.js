@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia';
-import axiosInstance from '@/admin/services/axiosService';
+import axiosInstance from '@/seller/services/axiosService';
 import { useToken } from './token';
 
 export const useAuth = defineStore('auth', {
@@ -23,7 +23,7 @@ export const useAuth = defineStore('auth', {
         async login(formData){
             const token = useToken();
             try {
-                let response = await axiosInstance.post('/admin/login', formData);
+                let response = await axiosInstance.post('/seller/login', formData);
                 if (response.status === 200) {
                     let data = response.data?.data;
                     this.user = data?.user;
@@ -41,7 +41,7 @@ export const useAuth = defineStore('auth', {
         async logout(){
             this.loading = true;
              try {
-                let response = await axiosInstance.post("/admin/logout");
+                let response = await axiosInstance.post("/seller/logout");
                 if (response.status === 200) {
                     this.removeToken();
                     return response;

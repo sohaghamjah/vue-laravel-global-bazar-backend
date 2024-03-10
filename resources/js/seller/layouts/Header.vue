@@ -1,5 +1,5 @@
 <script setup>
-    import { useAuth, useNotification } from '@/admin/stores';
+    import { useAuth, useNotification } from '@/seller/stores';
     import { useRouter } from 'vue-router';
 
     const auth = useAuth();
@@ -11,7 +11,7 @@
             const res = await auth.logout();
             if(res.data.status){
                 notify.flashNotify('success', 'Logout Successfully', "Success");
-                router.push({name: 'admin.login'});
+                router.push({name: 'seller.login'});
             }
         } catch (error) {
             

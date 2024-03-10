@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory } from "vue-router";
 import NProgress from 'nprogress'; 
-import { useAuth } from "@/admin/stores";
+import { useAuth } from "@/seller/stores";
 
 import { 
     Dashboard,
@@ -9,16 +9,16 @@ import {
 
 const routes = [
     {
-        path: "/admin/login",
-        name: "admin.login",
+        path: "/",
+        name: "seller.login",
         component: Login,
-        meta: {title: 'Admin Login', guest: true}
+        meta: {title: 'Seller Login', guest: true}
     },
     {
-        path: "/admin/dashboard",
-        name: "admin.dashboard",
+        path: "/seller/dashboard",
+        name: "seller.dashboard",
         component: Dashboard,
-        meta: {title: 'Admin Dashboard', requiresAuth: true}
+        meta: {title: 'Seller Dashboard', requiresAuth: true}
     },
 ];
 
@@ -40,13 +40,13 @@ router.beforeEach((to, from, next) => {
     const loggedIn = useAuth();
     if (to.matched.some((record) => record.meta.requiresAuth)) {
         if (!loggedIn.getAuthStatus) {
-          next({ name: "admin.login" });
+          next({ name: "seller.login" });
         } else {
           next();
         }
     }else if(to.matched.some((record) => record.meta.guest)){
         if (loggedIn.getAuthStatus) {
-            next({ name: "admin.dashboard" });
+            next({ name: "seller.dashboard" });
         } else {
             next();
         }

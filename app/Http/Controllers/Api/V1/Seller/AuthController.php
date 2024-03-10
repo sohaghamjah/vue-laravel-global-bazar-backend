@@ -14,11 +14,11 @@ use Illuminate\Validation\ValidationException;
 class AuthController extends ApiController
 {
     public function login(LoginRequest $request){
-        $user = Seller::where('phone', $request->phone)->first();
+        $user = Seller::where('email', $request->email)->first(); 
  
-        if (! $user || ! Hash::check($request->password, $user->password)) {
+        if (!$user || ! Hash::check($request->password, $user->password)) {
             throw ValidationException::withMessages([
-                'phone' => ['Phone or password dosen\' match.'],
+                'email' => ['Invalid Email Or Password'],
             ]);
         }
 
@@ -28,7 +28,7 @@ class AuthController extends ApiController
     public function logout(Request $request){
         $request->user()->tokens()->delete();
 
-        return $this->sendSuccessResponse(false, 'seller Logout', 200);
+        return $this->sendSuccessResponse(true, 'Seller Logout', 200);
     }
 
     public function user(Request $request){
@@ -39,11 +39,13 @@ class AuthController extends ApiController
     public function makeToken($user){
         $token = $user->createToken('seller-token')->plainTextToken;
 
-        return AuthResource::make($user)->additional([
-            'meta' => [
-                'token'      => $token,
-                'token_type' => 'Bearer',
-            ]
+        return AuthResource::make([
+            'user' => [
+                'name' => $user->name,
+                'email' => $user->email,
+                'phone' => $user->phone,
+            ],
+            'token' => $token,
         ]);
     }
 }

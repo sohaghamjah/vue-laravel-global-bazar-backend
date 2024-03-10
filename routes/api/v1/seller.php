@@ -13,7 +13,7 @@ Route::controller(SellerController::class)->group(function(){
     Route::post('/apply', 'sellerApply');
 });
 
-Route::middleware('auth:user-api')->group(function () {
+Route::middleware('auth:seller-api')->group(function () {
     Route::controller(AuthController::class)->group(function(){
         Route::post('/logout', 'logout');
         Route::get('/me', 'user');

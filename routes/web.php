@@ -14,10 +14,18 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
+    return view('seller.app');
+});
+
+Route::get('/admin/login', function () {
     return view('admin.app');
 });
 
 
-Route::get('{any}', function(){
+Route::get('admin/{any}', function(){
     return view(('admin.app'));
+})->where('any', '.*');
+
+Route::get('seller/{any}', function(){
+    return view(('seller.app'));
 })->where('any', '.*');
