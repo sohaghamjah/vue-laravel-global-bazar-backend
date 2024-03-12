@@ -66,4 +66,9 @@ class Seller extends Authenticatable
     }
 
 
+    public function files(): MorphMany
+    {
+        return $this->morphMany(File::class, 'fileable');
+    }
+
 }

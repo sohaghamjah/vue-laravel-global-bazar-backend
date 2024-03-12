@@ -13,8 +13,14 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('file_managers', function (Blueprint $table) {
+        Schema::create('files', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('fileable_id');
+            $table->string('fileable_type');
+            $table->string('file_original_name');
+            $table->string('file_name');
+            $table->string('extension');
+            $table->string('file_size');
             $table->timestamps();
         });
     }
@@ -26,6 +32,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('file_managers');
+        Schema::dropIfExists('files');
     }
 };
