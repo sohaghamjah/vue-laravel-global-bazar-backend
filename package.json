@@ -5,19 +5,18 @@
         "build": "vite build"
     },
     "devDependencies": {
+        "@popperjs/core": "^2.11.8",
+        "jquery": "^3.6.0",
         "laravel-vite-plugin": "^0.7.2",
         "lodash": "^4.17.19",
         "postcss": "^8.1.14",
-        "vite": "^4.0.0",
-        "@popperjs/core": "^2.11.8",
-        "jquery": "^3.6.0"
+        "vite": "^4.0.0"
     },
     "dependencies": {
         "@vitejs/plugin-vue": "^4.0.0",
         "admin-lte": "^3.2.0",
-        "vue": "^3.2.45",
-        "vue-loader": "^17.0.1",
         "axios": "^0.27.2",
+        "dropzone-vue": "^0.1.11",
         "element-plus": "^2.3.8",
         "laravel-vue-pagination": "^4.1.3",
         "moment": "^2.30.1",
@@ -27,6 +26,8 @@
         "skeleton-screen-css": "^1.1.0",
         "v3-infinite-loading": "^1.3.1",
         "vee-validate": "^4.10.8",
+        "vue": "^3.2.45",
+        "vue-loader": "^17.0.1",
         "vue-router": "^4.1.6",
         "yup": "^1.2.0"
     }
