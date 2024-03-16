@@ -16,8 +16,12 @@ export default defineConfig({
         }),
     ],
     resolve: {
-        alias: {
-          "@": fileURLToPath(new URL('resources/js', import.meta.url)),
-        },
+      alias: {
+        "@": fileURLToPath(new URL('resources/js', import.meta.url)),
       },
+    },
+    optimizeDeps: {
+      exclude: ['vue'],
+      include: ['path/to/other/dependency'],
+    },
 });

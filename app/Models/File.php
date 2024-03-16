@@ -9,8 +9,6 @@ class File extends Model
 {
     use HasFactory;
 
-
-
     public function fileable(): MorphTo
     {
         return $this->morphTo();

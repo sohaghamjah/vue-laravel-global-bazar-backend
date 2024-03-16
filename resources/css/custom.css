@@ -137,6 +137,9 @@ input[type=number] {
 .nav.nav-treeview .nav-link{
     padding: 3px 15px;
 }
+.nav-sidebar > .nav-item .nav-icon {
+  font-size: 1rem !important;
+}
 /*************************
 * Sidebar End
 ****************/

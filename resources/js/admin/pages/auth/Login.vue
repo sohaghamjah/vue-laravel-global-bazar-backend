@@ -36,7 +36,7 @@
     <div class="card-body">
       <p class="login-box-msg">Sign in to start your session</p>
 
-      <Form @submit="onSubmit" :validation-schema="schema" v-slot="{errors, isSubmitting}">
+      <Form @submit="onSubmit" :validation-schema="schema" v-slot="{isSubmitting}">
         <div class="input-group mb-3">
           <VInput placeholder="Email" type="email" name="email"></VInput>
         </div>

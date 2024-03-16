@@ -5,6 +5,7 @@ import { useAuth } from "@/admin/stores";
 import { 
     Dashboard,
     Login,
+    ManageFiles
  } from "../pages";
 
 const routes = [
@@ -18,47 +19,52 @@ const routes = [
         path: "/admin/dashboard",
         name: "admin.dashboard",
         component: Dashboard,
-        meta: {title: 'Admin Dashboard', requiresAuth: true}
+        meta: {title: 'Dashboard', requiresAuth: true}
+    },
+    {
+        path: "/admin/manage-files",
+        name: "admin.manage.files",
+        component: ManageFiles,
+        meta: {title: 'Manage Files', requiresAuth: true}
     },
 ];
 
 
 
 const router = createRouter({
-    history: createWebHistory(import.meta.env.APP_URL),
+    history: createWebHistory(import.meta.env.BASE_URL),
     routes,
-    scrollBehavior(){
-        return {  top: 0, behavior: "smooth" };
-    }
-})
-
-const DEFAULT_TITLE = '404';
+    scrollBehavior() {
+        return { top: 0, behavior: "smooth" };
+    },
+});
+const DEFAULT_TITLE = "404";
 
 router.beforeEach((to, from, next) => {
     document.title = to.meta.title || DEFAULT_TITLE;
-    NProgress.start(); 
-    const loggedIn = useAuth();
+    NProgress.start();
+
+    const auth = useAuth();
+
     if (to.matched.some((record) => record.meta.requiresAuth)) {
-        if (!loggedIn.getAuthStatus) {
-          next({ name: "admin.login" });
-        } else {
-          next();
-        }
-    }else if(to.matched.some((record) => record.meta.guest)){
-        if (loggedIn.getAuthStatus) {
-            next({ name: "admin.dashboard" });
+        if (!auth.getAuthStatus) {
+            next({ name: "admin.login" });
         } else {
             next();
         }
-    }else{
-        next();   
+    } else if (to.matched.some((record) => record.meta.guest)) {
+        if (auth.getAuthStatus) {
+            next({ name: "admin.home" });
+        } else {
+            next();
+        }
+    } else {
+        next();
     }
-})
+});
+
 
 router.afterEach(() => {
     NProgress.done();
-})
-
-
+});
 export default router;
-

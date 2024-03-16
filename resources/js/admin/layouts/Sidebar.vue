@@ -13,10 +13,19 @@
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
 
                 <li class="nav-item">
-                      <router-link :to="{name: 'admin.dashboard'}" class="nav-link">
-                          <i class="nav-icon fas fa-th"></i>
+                    <router-link :to="{name: 'admin.dashboard'}" class="nav-link">
+                        <i class="nav-icon fas fa-th"></i>
+                        <p>
+                            Dashboard
+                        </p>
+                    </router-link>
+                </li>
+
+                <li class="nav-item">
+                      <router-link :to="{name: 'admin.manage.files'}" class="nav-link">
+                          <i class="nav-icon fas fa-images"></i>
                           <p>
-                              Dashboard
+                            Manage Files
                           </p>
                       </router-link>
                   </li>

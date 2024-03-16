@@ -1,0 +1,9 @@
+<template>
+    <DropZone 
+    :maxFiles="10000000000"
+    url="http://localhost:5000/item"
+    :uploadOnDrop="true"
+    :multipleUpload="true"
+    :parallelUpload="3"
+    />
+</template>
