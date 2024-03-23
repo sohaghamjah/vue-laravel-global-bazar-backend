@@ -5,7 +5,8 @@ import { useAuth } from "@/admin/stores";
 import { 
     Dashboard,
     Login,
-    ManageFiles
+    IndexFile,
+    CreateFile
  } from "../pages";
 
 const routes = [
@@ -24,8 +25,14 @@ const routes = [
     {
         path: "/admin/manage-files",
         name: "admin.manage.files",
-        component: ManageFiles,
+        component: IndexFile,
         meta: {title: 'Manage Files', requiresAuth: true}
+    },
+    {
+        path: "/admin/manage-files/create",
+        name: "admin.manage.files.create",
+        component: CreateFile,
+        meta: {title: 'Create Files', requiresAuth: true}
     },
 ];
 

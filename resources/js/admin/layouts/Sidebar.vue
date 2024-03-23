@@ -22,13 +22,13 @@
                 </li>
 
                 <li class="nav-item">
-                      <router-link :to="{name: 'admin.manage.files'}" class="nav-link">
-                          <i class="nav-icon fas fa-images"></i>
-                          <p>
-                            Manage Files
-                          </p>
-                      </router-link>
-                  </li>
+                    <router-link :to="{name: 'admin.manage.files'}" class="nav-link">
+                        <i class="nav-icon fas fa-images"></i>
+                        <p>
+                        Manage Files
+                        </p>
+                    </router-link>
+                </li>
 
                   <!-- <li class="nav-header">AUTHORIZATIONS</li> -->
 

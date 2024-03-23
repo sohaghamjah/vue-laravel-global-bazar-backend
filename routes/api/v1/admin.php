@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\FileManagerController;
 use App\Http\Controllers\Api\V1\Admin\AuthController;
 use Illuminate\Support\Facades\Route;
 
@@ -13,4 +14,9 @@ Route::middleware('auth:admin-api')->group(function () {
         Route::post('/logout', 'logout');
         Route::get('/me', 'user');
     });
+
+    Route::controller(FileManagerController::class)->prefix('file-manager')->group(function () {
+        Route::post('/upload', 'upload');
+    });
+
 });
