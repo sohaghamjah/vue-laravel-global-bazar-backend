@@ -16,6 +16,7 @@ Route::middleware('auth:admin-api')->group(function () {
     });
 
     Route::controller(FileManagerController::class)->prefix('file-manager')->group(function () {
+        Route::get('/index', 'index');
         Route::post('/upload', 'upload');
     });
 

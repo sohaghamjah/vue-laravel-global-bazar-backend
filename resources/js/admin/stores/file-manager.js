@@ -4,22 +4,33 @@ import { useToken } from './token';
 
 export const useFileManager = defineStore('file-manager', {
     state: () => ({
-        files: {},
+        files: [],
     }),
+    getters:{
+        getItems: (state) => {
+            return state.files;
+        }
+    },
     actions:{
         async fileUpload(formData){
-            const token = useToken();
             try {
-                let response = await axiosInstance.post('/admin/file-manager/upload', formData);
-                console.log(response);
-                if (response.status === 200) {
-                        
-                }   
+                await axiosInstance.post('/admin/file-manager/upload', formData);
             } catch (error) {
                 if(error.response.data){
                     throw error.response.data.errors;
                 }
             }
         },
+
+        async getFiles(page){
+            try {
+                let response = await axiosInstance.get(`/admin/file-manager/index?page=${page}`);
+                if(response.status == 200){
+                    this.files = response.data;
+                }
+            } catch (error) {
+                
+            }
+        }
     }
 });

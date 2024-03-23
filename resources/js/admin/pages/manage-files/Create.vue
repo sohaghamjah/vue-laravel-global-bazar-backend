@@ -31,3 +31,12 @@
         </div>
     </div>
 </template>
+
+<style>
+    .dropzone__item--style {
+        margin: 10px 5px !important;
+        padding: 5px;
+        border: 1px solid #a6a6a6;
+        border-radius: 10px;
+    }
+</style>

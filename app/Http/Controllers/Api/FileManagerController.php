@@ -4,11 +4,19 @@ namespace App\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Resources\FileManagerResource;
 use Illuminate\Support\Facades\Auth;
 use Intervention\Image\Facades\Image;
 
 class FileManagerController extends Controller
 {
+
+    public function index(){
+        $admin = Auth::user();
+        $files = $admin->files()->latest()->paginate(24);
+        return FileManagerResource::collection($files);
+    }
+
     public function upload(Request $request){
 
         if($request->hasFile('file')){
