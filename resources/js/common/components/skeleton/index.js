@@ -1,0 +1,1 @@
+export { default as FileSkeleton } from './FileSkeleton.vue';

@@ -1,3 +1,18 @@
 @import "/node_modules/admin-lte/dist/css/adminlte.min.css";
 @import "/node_modules/admin-lte/plugins/fontawesome-free/css/all.min.css";
 @import "./custom.css";
+
+
+@import "nprogress/nprogress.css";
+@import "skeleton-screen-css";
+
+#nprogress .bar {
+    background: #ff0909 !important;
+    padding: 0 10px !important;
+    height: 4px !important;
+}
+
+#nprogress .spinner .spinner-icon {
+    border-top-color: #ffffff !important;
+    border-left-color: #ffffff !important;
+}
