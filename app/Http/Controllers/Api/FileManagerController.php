@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Models\File;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Http\Resources\FileManagerResource;
 use Illuminate\Support\Facades\Auth;
 use Intervention\Image\Facades\Image;
+use App\Http\Resources\FileManagerResource;
 
 class FileManagerController extends Controller
 {
@@ -36,5 +37,12 @@ class FileManagerController extends Controller
         ]);
 
         return sendMessage('Upload Success', true, 200);
+    }
+
+    public function delete($id){
+        $file = File::find($id);
+        $file->delete();
+        unlink($file->file_name);
+        return sendMessage('File Deleted Successful', true, 200);
     }
 }

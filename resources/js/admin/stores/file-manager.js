@@ -31,6 +31,18 @@ export const useFileManager = defineStore('file-manager', {
             } catch (error) {
                 
             }
+        },
+
+        async fileRemove(id){
+            try{
+                let response = await axiosInstance.delete(`/admin/file-manager/delete/${id}`);
+                if(response.status == 200){
+                    this.getFiles(1);
+                    return response.data;
+                }
+            }catch(error){
+                throw error.response.data.errors;
+            }
         }
     }
 });
