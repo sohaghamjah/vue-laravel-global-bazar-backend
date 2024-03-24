@@ -49,7 +49,7 @@ const DEFAULT_TITLE = "404";
 
 router.beforeEach((to, from, next) => {
     document.title = to.meta.title || DEFAULT_TITLE;
-    NProgress.start();
+    NProgress.start(); 
 
     const auth = useAuth();
 

@@ -2,7 +2,7 @@
 @import "/node_modules/admin-lte/plugins/fontawesome-free/css/all.min.css";
 @import "./custom.css";
 
-
+/***** package css  *****/
 @import "nprogress/nprogress.css";
 @import "skeleton-screen-css";
 
@@ -13,6 +13,6 @@
 }
 
 #nprogress .spinner .spinner-icon {
-    border-top-color: #ffffff !important;
-    border-left-color: #ffffff !important;
+    border-top-color: #ff0909 !important;
+    border-left-color: #ff0909 !important;
 }
