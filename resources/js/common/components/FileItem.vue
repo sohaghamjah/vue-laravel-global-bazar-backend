@@ -1,6 +1,6 @@
 <script setup>
-
     import { useFileManager, useNotification } from '@/admin/stores';
+    import { ref } from 'vue';
 
     const props = defineProps({
         data: {
@@ -25,11 +25,13 @@
     // File Remove 
     const fileManager = useFileManager();
     const notify = useNotification();
+    const deletedItem = ref(null);
 
     const fileRemove = async (id) => {
         try {
             let response = await fileManager.fileRemove(id);
             if(response.status){
+                deletedItem.value = id;
                 notify.flashNotify('success', 'File Deleted Successful!', "Success");
             }
         } catch (error) {
@@ -39,13 +41,13 @@
     
 </script>
 <template>
-<div class="dropzone__item dropzone--has-thumbnail dropzone--has-error dropzone__item--style">
+<div v-if="data.id !== deletedItem" class="dropzone__item dropzone--has-thumbnail dropzone--has-error dropzone__item--style">
     <div class="dropzone__item-thumbnail">
         <img :src="'/'+data.file_name">
     </div>
     <div class="dropzone__item-controls">
         <div class="dropzone__item-control" @click="fileRemove(data?.id)">
-            <i class="fas fa-trash-alt text-danger"></i>
+            <i class="fas fa-trash-alt "></i>
         </div>
     </div>
     <div class="dropzone__details dropzone__details--style">
