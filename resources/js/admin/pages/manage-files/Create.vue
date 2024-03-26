@@ -39,4 +39,8 @@
         border: 1px solid #a6a6a6;
         border-radius: 10px;
     }
+    .dropzone__box {
+        min-height: 150px !important;
+        align-items: center !important;
+    }
 </style>

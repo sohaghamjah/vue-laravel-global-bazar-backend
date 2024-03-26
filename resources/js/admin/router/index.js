@@ -6,7 +6,8 @@ import {
     Dashboard,
     Login,
     IndexFile,
-    CreateFile
+    CreateFile,
+    BrandIndex
  } from "../pages";
 
 const routes = [
@@ -33,6 +34,12 @@ const routes = [
         name: "admin.manage.files.create",
         component: CreateFile,
         meta: {title: 'Create Files', requiresAuth: true}
+    },
+    {
+        path: "/admin/brands",
+        name: "admin.brand.index",
+        component: BrandIndex,
+        meta: {title: 'Brand List', requiresAuth: true}
     },
 ];
 

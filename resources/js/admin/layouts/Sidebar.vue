@@ -30,6 +30,15 @@
                     </router-link>
                 </li>
 
+                <li class="nav-item">
+                    <router-link :to="{name: 'admin.brand.index'}" class="nav-link">
+                        <i class="nav-icon fas fa-th"></i>
+                        <p>
+                            Brands
+                        </p>
+                    </router-link>
+                </li>
+
                   <!-- <li class="nav-header">AUTHORIZATIONS</li> -->
 
                 <!-- <li class="nav-item menu-open">
