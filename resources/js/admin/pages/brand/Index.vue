@@ -7,6 +7,7 @@
     } from '@/common/components/table';
     import { useBrand } from '@/admin/stores';
     import { onMounted } from 'vue';
+    import { BrandIndexSkeleton } from '@/common/components/skeleton';
 
     const brand = useBrand();
 
@@ -48,7 +49,10 @@
                         <TableHead>Action</TableHead>
                     </TableRow>
                 </template>
-                <TableRow v-for="(brand,index) in brand.brands?.data" :key="index">
+
+                <BrandIndexSkeleton v-if="!brand.brands?.data" :dataAmount="5"></BrandIndexSkeleton>
+                
+                <TableRow v-else v-for="(brand,index) in brand.brands?.data" :key="index">
                     <TableData><input type="checkbox"></TableData>
                     <TableData>{{ brand.name }}</TableData>
                     <TableData>
