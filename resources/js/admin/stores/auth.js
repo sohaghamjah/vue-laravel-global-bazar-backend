@@ -2,7 +2,7 @@ import { defineStore } from 'pinia';
 import axiosInstance from '@/admin/services/axiosService';
 import { useToken } from './token';
 
-export const useAuth = defineStore('auth', {
+export const useAuth = defineStore('adminAuth', {
     state: () => ({
         user: {},
         loading: false,
