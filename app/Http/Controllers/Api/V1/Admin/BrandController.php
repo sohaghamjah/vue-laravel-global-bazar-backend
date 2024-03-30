@@ -10,8 +10,7 @@ use Illuminate\Http\Request;
 class BrandController extends Controller
 {
     public function index(){
-        $brands = Brand::latest()->get();
-
+        $brands = Brand::latest()->paginate(15);
         return BrandResource::collection($brands);
     }
 }

@@ -7,9 +7,9 @@ export const useBrand = defineStore('brand', {
         brands: [],
     }),
     actions:{
-        async getBrands(){
+        async getBrands(page){
             try {
-                let response = await axiosInstance.get(`/admin/brand/index`);
+                let response = await axiosInstance.get(`/admin/brand/index?page=${page}`);
                 if(response.status == 200){
                     this.brands = response.data;
                 }

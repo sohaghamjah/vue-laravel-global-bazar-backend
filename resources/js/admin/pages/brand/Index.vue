@@ -8,12 +8,21 @@
     import { useBrand } from '@/admin/stores';
     import { onMounted } from 'vue';
     import { BrandIndexSkeleton } from '@/common/components/skeleton';
+    import { Bootstrap4Pagination } from 'laravel-vue-pagination';
 
     const brand = useBrand();
 
     onMounted(() => {
-        brand.getBrands();
+        getBrands();
     });
+
+    const getBrands = async(page = 1) => {
+        try {
+            await brand.getBrands(page);
+        } catch (error) {
+            
+        }
+    } 
 
 
 </script>
@@ -56,11 +65,19 @@
                     <TableData><input type="checkbox"></TableData>
                     <TableData>{{ brand.name }}</TableData>
                     <TableData>
-                        <img :src="$filters.makeImagePath(brand.image)" alt="Image">
+                        <img width="100" :src="$filters.makeImagePath(brand.image)" alt="Image">
                     </TableData>
                     <TableData><span class="right badge" :class="brand.stringStatus.class">{{ brand.stringStatus.value }}</span></TableData>
+                    <TableData>
+                        <button class="btn btn-sm btn-primary">Edit</button>
+                        <button class="btn btn-sm ml-1 btn-danger">Delete</button>
+                    </TableData>
                 </TableRow>
             </Table>
+            <Bootstrap4Pagination
+                :data="brand.brands"
+                @pagination-change-page="getBrands"
+            />
        </div>
        <!-- /.card-body -->
    </div>
