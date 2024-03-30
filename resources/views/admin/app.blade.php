@@ -10,3 +10,6 @@
         <div class="wrapper" id="app"></div>
     </body>
 </html>
+<script>
+    window.baseUrl = '{{ url("/") }}';
+</script>

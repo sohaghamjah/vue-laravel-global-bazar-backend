@@ -24,4 +24,20 @@ app.use(router);
 app.use(pinia);
 app.use(ElementPlus);
 app.use(DropZone);
+
+app.config.globalProperties.$filters = {
+    
+    currencySymbol(value){
+        return "৳ " + value.toLocaleString()
+    },
+
+    makeImagePath(img){
+        return window.baseUrl + "/" + img;
+    },
+
+    textShort(text, size){
+        return text.substr(0, size) + '...';
+    }
+}
+
 app.mount('#app');

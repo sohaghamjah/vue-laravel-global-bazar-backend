@@ -5,6 +5,16 @@
         TableData, 
         TableRow 
     } from '@/common/components/table';
+    import { useBrand } from '@/admin/stores';
+    import { onMounted } from 'vue';
+
+    const brand = useBrand();
+
+    onMounted(() => {
+        brand.getBrands();
+    });
+
+
 </script>
 <template>
    <div class="card">
@@ -28,20 +38,23 @@
                     <input type="text" placeholder="Search Here..." class="form-control">
                 </div>
             </div>
-            <Table>
+            <Table> 
                 <template #tableHead>
                     <TableRow>
                         <TableHead><input type="checkbox"></TableHead>
-                        <TableHead>Browser</TableHead>
-                        <TableHead>Browser</TableHead>
-                        <TableHead>Browser</TableHead>
+                        <TableHead>Name</TableHead>
+                        <TableHead>Image</TableHead>
+                        <TableHead>Status</TableHead>
+                        <TableHead>Action</TableHead>
                     </TableRow>
                 </template>
-                <TableRow>
+                <TableRow v-for="(brand,index) in brand.brands?.data" :key="index">
                     <TableData><input type="checkbox"></TableData>
-                    <TableData>Explorer 4.0</TableData>
-                    <TableData>Explorer 4.0</TableData>
-                    <TableData>Explorer 4.0</TableData>
+                    <TableData>{{ brand.name }}</TableData>
+                    <TableData>
+                        <img :src="$filters.makeImagePath(brand.image)" alt="Image">
+                    </TableData>
+                    <TableData><span class="right badge" :class="brand.stringStatus.class">{{ brand.stringStatus.value }}</span></TableData>
                 </TableRow>
             </Table>
        </div>
