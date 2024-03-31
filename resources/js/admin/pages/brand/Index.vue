@@ -6,9 +6,10 @@
         TableRow 
     } from '@/common/components/table';
     import { useBrand } from '@/admin/stores';
-    import { onMounted, ref, watch } from 'vue';
+    import { computed, onMounted, ref, watch } from 'vue';
     import { BrandIndexSkeleton } from '@/common/components/skeleton';
     import { Bootstrap4Pagination } from 'laravel-vue-pagination';
+    import { debounce } from 'lodash';
 
     // Per page brand get
 
@@ -16,12 +17,7 @@
 
     // Search Brand
     const searchData = ref('');
-
-    watch(() => [...searchData.value], (newText, oldText) => {
-        if(newText.length >= 3 || oldText.length >= 3){
-            getBrands();
-        }
-    });
+    const debounceSearch = computed(() => debounce(getBrands, 500));
 
     // Get Brands
 
@@ -60,7 +56,7 @@
                     </select>
                 </div>
                 <div>
-                    <input type="text" placeholder="Search Here..." v-model="searchData" class="form-control">
+                    <input type="text" placeholder="Search Here..." v-model="searchData" @input="debounceSearch" lass="form-control">
                 </div>
             </div>
             <Table> 
