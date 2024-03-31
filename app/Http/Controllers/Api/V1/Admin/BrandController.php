@@ -9,8 +9,14 @@ use Illuminate\Http\Request;
 
 class BrandController extends Controller
 {
-    public function index(){
-        $brands = Brand::latest()->paginate(15);
+    public function index(Request $request){
+        $perPage = $request->perPage ?? 25;
+        $searchData = $request->searchData;
+        $brands = Brand::latest()
+                        ->when($searchData, function($q) use ($searchData){
+                            $q->where('name', 'LIKE', '%'.$searchData.'%');
+                        })
+                        ->paginate($perPage);
         return BrandResource::collection($brands);
     }
 }

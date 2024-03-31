@@ -6,9 +6,24 @@
         TableRow 
     } from '@/common/components/table';
     import { useBrand } from '@/admin/stores';
-    import { onMounted } from 'vue';
+    import { onMounted, ref, watch } from 'vue';
     import { BrandIndexSkeleton } from '@/common/components/skeleton';
     import { Bootstrap4Pagination } from 'laravel-vue-pagination';
+
+    // Per page brand get
+
+    const perPage = ref(25);
+
+    // Search Brand
+    const searchData = ref('');
+
+    watch(() => [...searchData.value], (newText, oldText) => {
+        if(newText.length >= 3 || oldText.length >= 3){
+            getBrands();
+        }
+    });
+
+    // Get Brands
 
     const brand = useBrand();
 
@@ -18,7 +33,7 @@
 
     const getBrands = async(page = 1) => {
         try {
-            await brand.getBrands(page);
+            await brand.getBrands(page, perPage.value, searchData.value);
         } catch (error) {
             
         }
@@ -29,23 +44,23 @@
 <template>
    <div class="card">
        <div class="card-header">
-           <h3 class="card-title">DataTable with minimal features & hover style</h3>
+           <h3 class="card-title">Brand List</h3>
        </div>
        <!-- /.card-header -->
        <div class="card-body">
             <div class="d-flex justify-content-between">
                 <div class="form-group">
-                    <select name="" class="form-control">
+                    <select class="form-control" v-model="perPage" @change="getBrands">
                         <option value="5">5</option>
                         <option value="10">10</option>
-                        <option value="25">50</option>
+                        <option value="25">25</option>
                         <option value="50">50</option>
                         <option value="75">75</option>
                         <option value="100">100</option>
                     </select>
                 </div>
                 <div>
-                    <input type="text" placeholder="Search Here..." class="form-control">
+                    <input type="text" placeholder="Search Here..." v-model="searchData" class="form-control">
                 </div>
             </div>
             <Table> 
